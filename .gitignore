@@ -1,0 +1,9 @@
+evolution.mp4
+wb.pt
+/.venv/
+/DATA_SAMPLES/
+**/*.class
+PYTHON/images/
+PYTHON/venv/
+io.txt
+predicted.txt
