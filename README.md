@@ -72,8 +72,13 @@ This project allows you to create and train a neural network with customizable p
 
 7. **Run the Java Application**
 
+   For visualizing the function
    ```sh
-   java -cp JAVA/OUT JAVA/Main parameters.xml
+   java -cp JAVA/OUT JAVA/Main --visualize parameters.xml
+   ```
+   For training the model
+   ```sh
+   java -cp JAVA/OUT JAVA/Main --run parameters.xml
    ```
 
 ### Customizing Parameters
@@ -159,7 +164,7 @@ You can customize the neural network's parameters by editing the `parameters.xml
 2. Set up and activate the Python virtual environment.
 3. Install the required Python packages.
 4. Compile the Java files with the necessary dependencies.
-5. Run the Java application with the path to your `parameters.xml` file.
+5. Run the Java application with the type and path to your `parameters.xml` file.
 6. Modify the parameters in `parameters.xml` to explore different configurations.
 
 ## Contributing
