@@ -1,7 +1,3 @@
-Got it. Here's an updated version of the `README.md` with the necessary changes to use `parameters.xml` instead of JSON:
-
----
-
 # Customizable Neural Network in Java
 
 This is a simple **Artificial Neural Network** implementation in Java that can be customized according to user needs. The main usage is to approximate functions and visualize the results.
