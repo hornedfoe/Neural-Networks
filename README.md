@@ -80,10 +80,13 @@ This project allows you to create and train a neural network with customizable p
 7. **Run the Java Application**
 
    For visualizing the function
+   
    ```sh
    java -cp JAVA/OUT JAVA/Main --visualize parameters.xml
    ```
+
    For training the model
+   
    ```sh
    java -cp JAVA/OUT JAVA/Main --run parameters.xml
    ```
@@ -138,18 +141,25 @@ You can customize the neural network's parameters by editing the `parameters.xml
 ### Optimizers (*change the **parameters.xml** accordingly*)
 
 - **Gradient Descent**: A basic optimizer that updates weights incrementally in the direction of the negative gradient.
+
    ```sh
    gradient-descent
    ```
+
 - **Momentum**: Accelerates gradient descent by considering the previous update direction.
+
    ```sh
    momentum
    ```
+
 - **RMSprop**: Adapts the learning rate for each parameter by dividing by the moving average of squared gradients.
+
    ```sh
    rms_prop
    ```
+
 - **Adam**: Combines the advantages of RMSprop and Momentum, providing an adaptive learning rate for each parameter.
+
    ```sh
    adam
    ```
@@ -157,10 +167,13 @@ You can customize the neural network's parameters by editing the `parameters.xml
 ### Initializers (*change the **parameters.xml** accordingly*)
 
 - **He**: Initializes weights to values drawn from a truncated normal distribution centered on 0 with a standard deviation of `sqrt(2/fan_in)`.
+
    ```sh
    he
    ```
+
 - **Xavier**: Initializes weights to values drawn from a truncated normal distribution centered on 0 with a standard deviation of `sqrt(1/fan_avg)`.
+
    ```sh
    xavier
    ```
@@ -168,18 +181,25 @@ You can customize the neural network's parameters by editing the `parameters.xml
 ### Activation Functions (*change the **parameters.xml** accordingly*)
 
 - **Linear**: The identity function.
+
    ```sh
    linear
    ```
+
 - **ReLU**: Rectified Linear Unit function, which outputs the input directly if it is positive, otherwise, it outputs zero.
+
    ```sh
    reLU
    ```
+
 - **Sigmoid**: A logistic function that outputs values between 0 and 1.
+
    ```sh
    sigmoid
    ```
+
 - **Tanh**: The hyperbolic tangent function, which outputs values between -1 and 1.
+
    ```sh
    tanh
    ```
