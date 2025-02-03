@@ -18,10 +18,7 @@ public class Main {
 
     private static double[] function(double[] X) {
         double x = X[0];
-        if (x > 50) {
-            x = x - 50;
-        }
-        x = Math.sin(x);
+        x = Math.sin(x) * x;
         return new double[]{x};
     }
 

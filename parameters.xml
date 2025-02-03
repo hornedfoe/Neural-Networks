@@ -1,21 +1,40 @@
 <parameters>
+    <!-- Number of input nodes (depends on your specific problem) -->
     <feature>1</feature>
+    <!-- Number of output nodes (depends on your specific problem) -->
     <output>1</output>
+    <!-- Number of train data (more data generally leads to better performance, usually in the thousands) -->
     <train>3000</train>
+    <!-- Number of test data (typically 10-20% of the total dataset) -->
     <test>600</test>
+    <!-- Number of validation data (typically 10-20% of the total dataset) -->
     <validate>300</validate>
-    <lower_bound>-2</lower_bound>
-    <upper_bound>20</upper_bound>
-    <structure>1,30,30,30,30,1</structure>
-    <functions>linear,reLU,reLU,reLU,reLU,linear</functions>
+    <!-- Lower bound range for input generation function (specific to your problem) -->
+    <lower_bound>-15</lower_bound>
+    <!-- Upper bound range for input generation function (specific to your problem) -->
+    <upper_bound>15</upper_bound>
+    <!-- Neural network structure [feature, ... hidden layers ... , output] (depends on the complexity of your problem) -->
+    <structure>1,30,30,30,30,30,30,30,30,1</structure>
+    <!-- Activation function of each layer (linear, reLU, sigmoid, tanh) (ReLU is commonly used for hidden layers, linear for output in regression) -->
+    <functions>linear,reLU,reLU,reLU,reLU,reLU,reLU,reLU,reLU,linear</functions>
+    <!-- Type of the model (Regression, Classification) -->
     <type>Regression</type>
+    <!-- Total number of epochs (typically ranges from 100 to 1000) -->
     <epochs>1000</epochs>
+    <!-- Learning rate (commonly ranges from 0.001 to 0.01) -->
     <lr>0.01</lr>
+    <!-- Optimizers (gradient_decent, momentum, rms_prop, adam) (Adam is a popular choice) -->
     <Model>adam</Model>
+    <!-- Parameter for momentum or adam (commonly 0.9 for momentum; for Adam, beta1 is often set between 0.9 and 0.999) -->
     <beta1>0.99</beta1>
+    <!-- Parameter for rms_prop or adam (for Adam, beta2 is typically set between 0.999 and 0.9999) -->
     <beta2>0.999</beta2>
+    <!-- Parameter for rms_prop or adam (epsilon is typically set between 1e-7 and 1e-8) -->
     <epsilon>1e-8</epsilon>
+    <!-- Training batch size (commonly ranges from 32 to 256, but can be larger for more stable training) -->
     <batchSize>3000</batchSize>
+    <!-- Parameter for regularization (commonly ranges from 1e-5 to 1e-3) -->
     <lambda>1e-18</lambda>
-    <video>false</video>
+    <!-- Switch for evolution video (specific to your preference) -->
+    <video>true</video>
 </parameters>
