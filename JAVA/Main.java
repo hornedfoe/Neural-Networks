@@ -12,6 +12,10 @@ import org.w3c.dom.Element;
 
 public class Main {
 
+    private static Parameters params; 
+
+    private static Random rand = new Random();
+
     private static double[] function(double[] X) {
         double x = X[0];
         if (x > 50) {
@@ -22,19 +26,48 @@ public class Main {
     }
 
     public static void main(String[] args) throws IllegalAccessException, IOException {
-        if (args.length != 1) {
-            System.out.println("Usage: java JAVA.Main <path to parameters.xml>");
+        if (args.length < 2) {
+            System.out.println("Usage: java JAVA.Main <type>");
+            System.out.println("--visualize <path/to/parameters.xml> # to visualize the function");
+            System.out.println("--run <path/to/parameters.xml> # to train the model");
             return;
         }
 
-        String xmlFilePath = args[0];
-        Parameters params = readParametersFromXML(xmlFilePath);
+        String type = args[0];
+        Main.params = readParametersFromXML(args[1]);
 
+        switch(type){
+            case "--visualize":
+                visualize();
+                break;
+            case "--run":
+                run();
+                break;
+            default:
+                System.out.println("Provide Valid Type");
+                return;
+        }
+    }
+
+    private static void visualize(){
+        double[][] X = new double[params.train][params.feature];
+        double[][] Y = new double[params.train][params.output];
+
+        for (int i = 0; i < params.train; i++) {
+            for (int j = 0; j < params.feature; j++) {
+                X[i][j] = rand.nextDouble(params.lower_bound, params.upper_bound);
+            }
+            Y[i] = function(X[i]);
+        }
+
+        Other.write(X, Y, "PYTHON/io.txt");
+        Other.runPy(new String[]{"python", "PYTHON/plot.py", "PYTHON/io.txt", "function"});
+    }
+
+    private static void run() throws IllegalAccessException, IOException {
         Other.deleteAll(new File("PYTHON/images"));
 
         boolean video = params.video && params.feature == 1 && params.output == 1;
-
-        Random rand = new Random();
 
         ExternalObserver eo = new ExternalObserver();
 

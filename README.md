@@ -100,6 +100,7 @@ You can customize the neural network's parameters by editing the `parameters.xml
     <epsilon>1e-8</epsilon>
     <batchSize>3000</batchSize>
     <lambda>1e-18</lambda>
+    <video>true<video>
 </parameters>
 ```
 

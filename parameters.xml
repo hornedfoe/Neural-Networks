@@ -17,5 +17,5 @@
     <epsilon>1e-8</epsilon>
     <batchSize>3000</batchSize>
     <lambda>1e-18</lambda>
-    <video>true</video>
+    <video>false</video>
 </parameters>
