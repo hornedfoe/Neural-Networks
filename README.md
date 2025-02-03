@@ -140,5 +140,3 @@ If you'd like to contribute to this project, please fork the repository and subm
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ---
-
-Feel free to adjust the URLs and repository details according to your actual project. This `README.md` provides a clear and attractive presentation of your project, making it easier for others to understand and use.
