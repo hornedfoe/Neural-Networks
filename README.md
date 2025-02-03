@@ -6,8 +6,15 @@ This is a simple **Artificial Neural Network** implementation in Java that can b
 
 This project allows you to create and train a neural network with customizable parameters. You can adjust the network's structure, activation functions, and training parameters to fit your specific requirements.
 
-![Figure 1](https://github.com/user-attachments/assets/7c5de76f-c3b3-4dca-bf8b-8699043f54ed)
-![Figure 2](https://github.com/user-attachments/assets/3066af3d-bcc4-4db1-8036-2361e457182c)
+## Snapshots
+
+![ACTUAL](https://github.com/user-attachments/assets/ee3cab14-711f-4640-a673-d173e6da3a71)
+![PREDICTED](https://github.com/user-attachments/assets/6795d669-b6cf-4685-bf17-54a4dd5f6b7d)
+
+## Evolution
+
+![evolution-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/84e45827-a26f-4e86-a109-922566086653)
+
 
 ## Features
 
