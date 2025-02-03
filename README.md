@@ -61,7 +61,7 @@ This project allows you to create and train a neural network with customizable p
 5. **Install Required Python Packages**
 
    ```sh
-   pip install -r requirements.txt
+   pip install -r PYTHON/requirements.txt
    ```
 
 6. **Compile Java Files**
