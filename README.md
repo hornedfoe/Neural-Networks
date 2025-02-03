@@ -67,13 +67,13 @@ This project allows you to create and train a neural network with customizable p
 6. **Compile Java Files**
 
    ```sh
-   javac -cp .;C:\libs\json-20210307.jar -d JAVA/OUT JAVA/*.java
+   javac -d JAVA/OUT JAVA/*.java
    ```
 
 7. **Run the Java Application**
 
    ```sh
-   java -cp .;C:\libs\json-20210307.jar;JAVA/OUT JAVA.Main path/to/parameters.xml
+   java -cp JAVA/OUT JAVA/Main parameters.xml
    ```
 
 ### Customizing Parameters
