@@ -1,8 +1,5 @@
 package JAVA;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -19,17 +16,17 @@ public class Model {
     private Activation activation;
     private double lambda;
     private Loss cost;
-    private boolean video;
     private String type;
     private Double lr;
     private double beta1;
     private double beta2;
     private double epsilon;
+    private ExternalObserver eo;
 
     // Constructor
     public Model(String type, Integer[] structure, String[] functions, Integer epochs, double lr, String optimizer,
             double beta1,
-            double beta2, double epsilon, Integer batchSize, double lambda, boolean video)
+            double beta2, double epsilon, Integer batchSize, double lambda, ExternalObserver eo)
             throws IllegalAccessException {
 
         this.structure = structure;
@@ -43,7 +40,7 @@ public class Model {
         this.optimizer = new Optimizer(optimizer, structure, lr, beta1, beta2, epsilon);
         this.lambda = lambda;
         this.cost = new Loss(type);
-        this.video = video;
+        this.eo = eo;
 
         this.B = new double[structure.length][];
         this.W = new double[structure.length - 1][][];
@@ -55,88 +52,6 @@ public class Model {
         for (int i = 0; i < structure.length - 1; i++) {
             this.W[i] = Initializer.initialize(structure[i], structure[i + 1], functions[i + 1]);
         }
-    }
-
-    public Model(String path) throws FileNotFoundException, IOException, IllegalAccessException {
-        if (!path.endsWith(".pt") && !path.endsWith(".pt\\"))
-            throw new IllegalAccessException(path + " is not a valid pt path");
-        try (FileReader reader = new FileReader(path)) {
-            BufferedReader br = new BufferedReader(reader);
-            String line;
-            int state = 0;
-            while ((line = br.readLine()) != null) {
-                String[] words = line.split(" ");
-                if (state == 0 && words[0].equals("structure_length")) {
-                    int n = Integer.parseInt(words[1]);
-                    structure = new Integer[n];
-                    functions = new String[n];
-                    for (int i = 0; i < n; i++) {
-                        structure[i] = Integer.parseInt(words[i + 2]);
-                    }
-                    this.type = br.readLine().split(" ")[1];
-
-                    words = br.readLine().split(" ");
-
-                    for (int i = 0; i < n; i++) {
-                        functions[i] = words[i + 1];
-                    }
-
-                    this.epochs = Integer.parseInt(br.readLine().split(" ")[1]);
-
-                    this.opt = br.readLine().split(" ")[1];
-
-                    this.lr = Double.parseDouble(br.readLine().split(" ")[1]);
-
-                    this.beta1 = Double.parseDouble(br.readLine().split(" ")[1]);
-
-                    this.beta2 = Double.parseDouble(br.readLine().split(" ")[1]);
-
-                    this.epsilon = Double.parseDouble(br.readLine().split(" ")[1]);
-
-                    this.lambda = Double.parseDouble(br.readLine().split(" ")[1]);
-
-                    state = 1;
-
-                    W = new double[n - 1][][];
-                    B = new double[n][];
-
-                    for (int i = 0; i < n - 1; i++) {
-                        W[i] = new double[structure[i]][structure[i + 1]];
-                    }
-
-                    for (int i = 0; i < n; i++) {
-                        B[i] = new double[structure[i]];
-                    }
-                } else if (state == 1) {
-                    if (words.length > 0 && words[0].equals("weights")) {
-                        for (int i = 0; i < structure.length - 1; i++) {
-                            for (int j = 0; j < structure[i]; j++) {
-                                String curr = br.readLine();
-                                String[] curr_v = curr.split(" ");
-                                for (int k = 0; k < structure[i + 1]; k++) {
-                                    W[i][j][k] = Double.parseDouble(curr_v[k]);
-                                }
-                            }
-                            br.readLine();
-                        }
-                        state = 2;
-                    }
-                } else {
-                    if (words.length > 0 && words[0].equals("biases")) {
-                        for (int i = 0; i < structure.length; i++) {
-                            String curr = br.readLine();
-                            String[] curr_v = curr.split(" ");
-                            for (int j = 0; j < structure[i]; j++) {
-                                B[i][j] = Double.parseDouble(curr_v[j]);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        this.activation = new Activation(structure, functions);
-        this.cost = new Loss(type);
-        this.optimizer = new Optimizer(opt, structure, lr, beta1, beta2, epsilon);
     }
 
     // Train method
@@ -251,12 +166,9 @@ public class Model {
                         + calculateR2(y, predicted) + "\u001B[0m");
             }
 
-            if (epoch % 10 == 0 && video)
-                Other.write(X, predict(X), "PYTHON/images/images.txt");
-            if (epoch % 10 == 0 && video)
-                Other.runPy(new String[] { "python", "PYTHON/generate.py", "PYTHON/images/images.txt",
-                        "PYTHON/images/image" + epoch + ".png", "epoch " + epoch });
-
+            if(eo.ping(epoch)){
+                eo.run(X);
+            }
         }
     }
 
