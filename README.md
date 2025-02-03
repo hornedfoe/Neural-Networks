@@ -1,3 +1,7 @@
+Got it. Here's an updated version of the `README.md` with the necessary changes to use `parameters.xml` instead of JSON:
+
+---
+
 # Customizable Neural Network in Java
 
 This is a simple **Artificial Neural Network** implementation in Java that can be customized according to user needs. The main usage is to approximate functions and visualize the results.
@@ -73,84 +77,54 @@ This project allows you to create and train a neural network with customizable p
 7. **Run the Java Application**
 
    ```sh
-   java -cp .;C:\libs\json-20210307.jar;JAVA/OUT JAVA.Main path/to/parameters.json
+   java -cp .;C:\libs\json-20210307.jar;JAVA/OUT JAVA.Main path/to/parameters.xml
    ```
 
 ### Customizing Parameters
 
-You can customize the neural network's parameters by editing the `parameters.json` file. Experiment with different values to see how they affect the network's performance and output. Here is an example of the `parameters.json` file:
+You can customize the neural network's parameters by editing the `parameters.xml` file. Experiment with different values to see how they affect the network's performance and output. Here is an example of the `parameters.xml` file:
 
-```json
-{
-  "feature": 1,
-  "output": 1,
-  "train": 3000,
-  "test": 600,
-  "validate": 300,
-  "lower_bound": -2,
-  "upper_bound": 20,
-  "structure": [1, 30, 30, 30, 30, 1],
-  "functions": ["linear", "reLU", "reLU", "reLU", "reLU", "linear"],
-  "type": "Regression",
-  "epochs": 1000,
-  "lr": 0.01,
-  "Model": "adam",
-  "beta1": 0.99,
-  "beta2": 0.999,
-  "epsilon": 1e-8,
-  "batchSize": 3000,
-  "lambda": 1e-18
-}
+```xml
+<parameters>
+    <feature>1</feature>
+    <output>1</output>
+    <train>3000</train>
+    <test>600</test>
+    <validate>300</validate>
+    <lower_bound>-2</lower_bound>
+    <upper_bound>20</upper_bound>
+    <structure>1,30,30,30,30,1</structure>
+    <functions>linear,reLU,reLU,reLU,reLU,linear</functions>
+    <type>Regression</type>
+    <epochs>1000</epochs>
+    <lr>0.01</lr>
+    <Model>adam</Model>
+    <beta1>0.99</beta1>
+    <beta2>0.999</beta2>
+    <epsilon>1e-8</epsilon>
+    <batchSize>3000</batchSize>
+    <lambda>1e-18</lambda>
+</parameters>
 ```
 
-### Optimizers (*change the parameters.xml accordingly*)
+### Optimizers
 
 - **Gradient Descent**: A basic optimizer that updates weights incrementally in the direction of the negative gradient.
-  ```sh
-   gradient_descent
-  ```
 - **Momentum**: Accelerates gradient descent by considering the previous update direction.
-  ```sh
-   momentum
-  ```
 - **RMSprop**: Adapts the learning rate for each parameter by dividing by the moving average of squared gradients.
-  ```sh
-   rms_prop
-  ```
 - **Adam**: Combines the advantages of RMSprop and Momentum, providing an adaptive learning rate for each parameter.
-  ```sh
-   adam
-  ```
 
-### Initializers (*change the parameters.xml accordingly*)
+### Initializers
 
 - **He**: Initializes weights to values drawn from a truncated normal distribution centered on 0 with a standard deviation of `sqrt(2/fan_in)`.
-  ```sh
-   he
-  ```
 - **Xavier**: Initializes weights to values drawn from a truncated normal distribution centered on 0 with a standard deviation of `sqrt(1/fan_avg)`.
-  ```sh
-   xavier
-  ```
 
-### Activation Functions (*change the parameters.xml accordingly*)
+### Activation Functions
 
 - **Linear**: The identity function.
-  ```sh
-   linear or input
-  ```
 - **ReLU**: Rectified Linear Unit function, which outputs the input directly if it is positive, otherwise, it outputs zero.
-  ```sh
-   reLU
-  ```
 - **Sigmoid**: A logistic function that outputs values between 0 and 1.
-  ```sh
-   sigmoid
-  ```
 - **Tanh**: The hyperbolic tangent function, which outputs values between -1 and 1.
-  ```sh
-   tanh
-  ```
 
 ### Example Workflow
 
@@ -158,8 +132,8 @@ You can customize the neural network's parameters by editing the `parameters.jso
 2. Set up and activate the Python virtual environment.
 3. Install the required Python packages.
 4. Compile the Java files with the necessary dependencies.
-5. Run the Java application with the path to your `parameters.json` file.
-6. Modify the parameters in `parameters.json` to explore different configurations.
+5. Run the Java application with the path to your `parameters.xml` file.
+6. Modify the parameters in `parameters.xml` to explore different configurations.
 
 ## Contributing
 
