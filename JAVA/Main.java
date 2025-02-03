@@ -36,8 +36,12 @@ public class Main {
 
         Random rand = new Random();
 
+        ExternalObserver eo = new ExternalObserver();
+
         Model model = new Model(params.type, params.structure, params.functions, params.epochs, params.lr, params.Model,
-                params.beta1, params.beta2, params.epsilon, params.batchSize, params.lambda, video);
+                params.beta1, params.beta2, params.epsilon, params.batchSize, params.lambda, eo);
+        
+        eo.update(model, video, 10);
 
         double[][] X = new double[params.train][params.feature];
         double[][] Y = new double[params.train][params.output];
