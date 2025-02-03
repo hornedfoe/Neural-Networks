@@ -251,9 +251,9 @@ public class Model {
                         + calculateR2(y, predicted) + "\u001B[0m");
             }
 
-            if (epoch % 2 == 0 && video)
+            if (epoch % 10 == 0 && video)
                 Other.write(X, predict(X), "PYTHON/images/images.txt");
-            if (epoch % 2 == 0 && video)
+            if (epoch % 10 == 0 && video)
                 Other.runPy(new String[] { "python", "PYTHON/generate.py", "PYTHON/images/images.txt",
                         "PYTHON/images/image" + epoch + ".png", "epoch " + epoch });
 

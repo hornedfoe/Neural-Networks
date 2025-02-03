@@ -1,0 +1,20 @@
+<parameters>
+    <feature>1</feature>
+    <output>1</output>
+    <train>3000</train>
+    <test>600</test>
+    <validate>300</validate>
+    <lower_bound>-2</lower_bound>
+    <upper_bound>20</upper_bound>
+    <structure>1,30,30,30,30,1</structure>
+    <functions>linear,reLU,reLU,reLU,reLU,linear</functions>
+    <type>Regression</type>
+    <epochs>1000</epochs>
+    <lr>0.01</lr>
+    <Model>adam</Model>
+    <beta1>0.99</beta1>
+    <beta2>0.999</beta2>
+    <epsilon>1e-8</epsilon>
+    <batchSize>3000</batchSize>
+    <lambda>1e-18</lambda>
+</parameters>
