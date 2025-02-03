@@ -32,7 +32,7 @@ public class Main {
 
         Other.deleteAll(new File("PYTHON/images"));
 
-        boolean video = true && params.feature == 1 && params.output == 1;
+        boolean video = params.video && params.feature == 1 && params.output == 1;
 
         Random rand = new Random();
 
@@ -176,6 +176,8 @@ public class Main {
             params.epsilon = Double.parseDouble(root.getElementsByTagName("epsilon").item(0).getTextContent());
             params.batchSize = Integer.parseInt(root.getElementsByTagName("batchSize").item(0).getTextContent());
             params.lambda = Double.parseDouble(root.getElementsByTagName("lambda").item(0).getTextContent());
+            params.video = Boolean.parseBoolean(root.getElementsByTagName("video").item(0).getTextContent());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -201,5 +203,6 @@ public class Main {
         double epsilon;
         Integer batchSize;
         double lambda;
+        boolean video;
     }
 }
